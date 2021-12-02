@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomato</title>
+    <link rel="stylesheet" href="style/style.css">
+
+</head>
+
+<body>
+    <div class="container" id="container">
+
+        <header></header>
+
+
+        <section>
+            <h2>Recipe of the Day</h2>
+            <div class="dishes" id="dishes">
+
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>
+
+<script type="module">
+    let header = document.querySelector("header"); import {navbar} from "./components/navbar.js"; header.innerHTML = navbar();
+
+</script>
+
+<script>
+    let dishe_div = document.getElementById("dishes");
+
+    let url = "https://www.themealdb.com/api/json/v1/1/random.php";
+    async function getData() {
+        try {
+            let res = await fetch(url);
+            let data = await res.json();
+            return data;
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    displayDishes()
+
+    async function displayDishes() {
+        let res = await getData();
+        let dishes = res.meals
+        console.log(dishes)
+
+        dishes.map(function(item, index) {
+
+            var card = document.createElement("div");
+            card.setAttribute("class", "card2")
+
+            let div1 = document.createElement("div");
+            var img = document.createElement("img");
+            img.setAttribute("src", item.strMealThumb)
+            img.setAttribute("class", "dish-img")
+            div1.append(img)
+
+
+            let div2 = document.createElement("div")
+            var h2 = document.createElement("h3");
+            h2.innerHTML = item.strMeal;
+
+            let p1 = document.createElement("p");
+            p1.innerHTML = `<b>Recipe Area: </b> ${item.strArea}`;
+
+            let p2 = document.createElement("p");
+            p2.innerHTML = `<b>Recipe Category: </b> ${item.strCategory}`;
+
+            let p3 = document.createElement("p");
+            p3.innerHTML = `<b>Ingredients: </b> ${item.strIngredient1}, ${item.strIngredient2}, ${item.strIngredient3}, ${item.strIngredient4}, ${item.strIngredient5}`;
+
+            var desc = document.createElement("p");
+            desc.innerHTML = `<b>Description:</b> ${item.strInstructions}`;
+
+            div2.append(h2, p1, p2, p3, desc)
+            card.append(div1, div2)
+            dishe_div.append(card)
+        })
+    }
+
+    window.onclick = function(event) {
+        document.getElementById("results").style.display = " none"
+    }
+    async function searchItem() {
+        try {
+            let q = document.getElementById("search").value;
+            let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${q}`;
+            let res = await fetch(url);
+            let data = await res.json();
+            console.log(data.meals)
+            searchResults(data.meals)
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    let bomb;
+    let debounce = (func, delay) => {
+        clearTimeout(bomb);
+
+        bomb = setTimeout(() => {
+            func()
+        }, delay)
+    }
+
+
+    let searchResults = (data) => {
+        let output = ""
+        document.getElementById("results").style.display = "block"
+        data.map((item) => {
+
+            output += `
+            <a href="/search.html?id=${item.idMeal}" >
+            <div class="wrapper">
+                <div class="itemImg">
+                    <img src="${item.strMealThumb}" alt="">
+                </div>
+                <div class="itemTitle">
+                    <h4>${item.strMeal}</h4>
+                </div>
+            </div></a>
+            `;
+
+        })
+        document.getElementById("results").innerHTML = output
+    }
+</script>
