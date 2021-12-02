@@ -12,7 +12,7 @@ let navbar = () => {
         <div class="menu">
             <ul>
                 <li><a href="index.html">Latest Recipe</a></li>
-                <li><a href="random.html">Recipe of the Day</a></li>
+                <li><a href="foodrecipe/random.html">Recipe of the Day</a></li>
             </ul>
         </div>
     </div>
