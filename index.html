@@ -72,7 +72,7 @@
 
             card.style.cursor = "pointer"
             card.addEventListener("click", () => {
-                window.location.href = `/search.html?id=${item.idMeal}`;
+                window.location.href = `foodrecipe/search.html?id=${item.idMeal}`;
             })
             dishe_div.append(card)
         })
@@ -111,7 +111,7 @@
         data.map((item) => {
 
             output += `
-            <a href="foodrecipe/search.html?id=${item.idMeal}" >
+            <a href="/search.html?id=${item.idMeal}" >
             <div class="wrapper">
                 <div class="itemImg">
                     <img src="${item.strMealThumb}" alt="">
