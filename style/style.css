@@ -63,6 +63,7 @@ nav {
     border-radius: 3px;
     overflow: auto;
     display: none;
+    padding:5px;
 }
 
 
@@ -142,6 +143,7 @@ a {
 
 .itemTitle {
     width: 60%;
+    text-align:left;
 }
 
 .wrapper div img {
