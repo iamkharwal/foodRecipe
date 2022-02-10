@@ -8,8 +8,11 @@
 </ul>
 
 <h1>Screenshots</h1>
-
-
-
+<h3>Home Page</h3>
+<img src="https://github.com/iamkharwal/foodRecipe/blob/main/foodRecipe.png" >
+<h3>Recipe Page</h3>
+<img src="https://github.com/iamkharwal/foodRecipe/blob/main/recipe2.png" >
+<h3>Search</h3>
+<img src="https://github.com/iamkharwal/foodRecipe/blob/main/recipe3.png" >
 
 
