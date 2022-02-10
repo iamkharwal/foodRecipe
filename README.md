@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to Food Recipe Website
 
 You can use the [editor on GitHub](https://github.com/iamkharwal/foodRecipe/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
